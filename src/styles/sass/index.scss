@@ -3,8 +3,48 @@ body{
     margin:0px;
     font-family: 'Poppins';
 }
+a{
+  text-decoration:none;
+}
+main{
+  position: relative;
+  left: 17.96%;
+  width: 82.04%;
+  box-sizing: border-box;
+  padding:50px;
+  background-color: #F8F8F8;
+}
 .target-component{
   background: #ffffff;
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
+  &--2{
+    border-radius: 20px;
+  }
+  &--green{
+    background: #135846;
+  }
+}
+.tabMenu-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;      
+}
+.fs-14{
+  font-size: 0.875rem;
+}
+.fw-500{
+  font-weight:500;
+}
+.fw-600{
+  font-weight:600;
+}
+.c-green{
+  color: #799283;
+}
+.c-grey{
+  color:#6E6E6E;
+}
+.flex{
+  display:flex;
 }

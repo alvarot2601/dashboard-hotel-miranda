@@ -11,12 +11,13 @@ const NavBar = styled.nav`
     background: #FFFFFF;
     box-shadow: 0px 3px 10px #00000005;
     position:relative;
-    left:17vw;
+    left: 17.96%;
+    width: 82.04%;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding: 0px 30px;
-    width:83vw;
+    
     box-sizing:border-box;
     > div:first-child{
         display:flex;
