@@ -1,8 +1,17 @@
 import React from "react";
 import {MdGppBad, MdOutlineGppGood} from 'react-icons/md';
 import {AiOutlineArrowRight} from 'react-icons/ai';
+import { useState } from "react";
 import { CustomerReviews, UserImage, TabMenu, Table, Button } from "../components/StyledComponents";
 const Contact = () => {
+    const tabOptions = ["All Contacts", "Archived"];
+    const [filter, setFilter] = useState(0);
+    const filterHandler = (e) => {
+        let activeFilter = document.querySelector(".activeFilter");
+        activeFilter.classList.remove("activeFilter");
+        e.target.classList.add("activeFilter");
+        setFilter(e.target.value);
+      };
     return (
         <main>
         <CustomerReviews className="customerReviews target-component target-component--2">
@@ -73,10 +82,17 @@ const Contact = () => {
             </div>
         </div>
       </CustomerReviews>
-      <TabMenu>
-        <span>All Contacts</span>
-        <span>Archived</span>
-      </TabMenu>
+       <TabMenu tabOptions={tabOptions}>
+          {tabOptions.map((item, index) => (
+            <Button
+              className={index == 0 ? "activeFilter" : ""}
+              value={index}
+              onClick={filterHandler}
+            >
+              {item}
+            </Button>
+          ))}
+        </TabMenu>
       <Table className="target-component">
         <tr>
             <th>Date</th>

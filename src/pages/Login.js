@@ -3,6 +3,13 @@ import styled, { css } from 'styled-components'
 import { useState } from "react";
 import {useNavigate } from "react-router";
 const LoginForm = styled.div`
+    width:100%;
+    max-width:700px;
+    margin:auto;
+    input{
+        width:100%;
+        padding:10px;
+    }
 `;
 const Login = () => {
     const navigate = useNavigate();
@@ -26,7 +33,9 @@ const Login = () => {
     
     return (
         <LoginForm method="POST" action="">
-            <input type="email" onChange={saveCredentials}/>
+            <label for="userEmail">Email (alvaro@gmail.com)</label>
+            <input type="email" id="userEmail" onChange={saveCredentials}/>
+            <label for="userEmail">Password (1234)</label>
             <input type="password" onChange={saveCredentials}/>
             <input type="submit" onClick={authentication}/>
         </LoginForm>

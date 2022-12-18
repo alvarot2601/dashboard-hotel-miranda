@@ -6,6 +6,51 @@ import {AiOutlineHeart, AiOutlineMessage, AiOutlineBell, AiOutlineArrowDown} fro
 import {BsSearch} from 'react-icons/bs';
 import {MdCompareArrows} from 'react-icons/md'; 
 import {SiGooglemessages} from 'react-icons/si';
+import { Navigate, redirect } from "react-router";
+import { useNavigate } from "react-router";
+
+
+
+const Nav = () => {
+
+    const closeAside = () => {
+        const nav = document.querySelector("nav");
+        const aside = document.querySelector("aside");
+        const main = document.querySelector("main");
+        if(nav.classList.contains('full'))
+        {
+            nav.classList.remove("full");
+            main.classList.remove("full");
+            aside.classList.remove('close')
+        }
+        else{
+            aside.classList.add('close')
+            nav.classList.add("full");
+            main.classList.add("full");
+        }
+    }
+    const logOutHandler = () => {
+        localStorage.clear();
+        redirect("/login");
+        console.log('2222222')
+    }
+    return (
+        <NavBar>
+           <div>
+                <MdCompareArrows onClick={closeAside}/> <span>Dashboard</span>
+           </div>
+           <IconContainer>
+               <span>
+                    <AiOutlineMessage/>
+                    <sup className="sup">2</sup>
+               </span>
+                <AiOutlineBell />
+                <BiLogOut onClick={logOutHandler} />
+           </IconContainer>
+        </NavBar>
+    );
+}
+
 const NavBar = styled.nav`
     height: 120px;
     background: #FFFFFF;
@@ -46,6 +91,10 @@ const NavBar = styled.nav`
         font-weight:600;
         color:#FFF;
     }
+    &.full{
+        width:100%;
+        left:0%;
+    }
 `;
 const IconContainer = styled.div`
     display:flex;
@@ -53,22 +102,4 @@ const IconContainer = styled.div`
     align-items:center;
     
 `;
-
-const Nav = () => {
-    return (
-        <NavBar>
-           <div>
-                <MdCompareArrows/> <span>Dashboard</span>
-           </div>
-           <IconContainer>
-               <span>
-                    <AiOutlineMessage/>
-                    <sup className="sup">2</sup>
-               </span>
-                <AiOutlineBell />
-                <BiLogOut />
-           </IconContainer>
-        </NavBar>
-    );
-}
 export default Nav;

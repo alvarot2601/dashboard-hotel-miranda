@@ -1,23 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import {
   TabMenu,
   Button,
   OrderBySelect,
-  Table,
 } from "../components/StyledComponents";
 import { UserImage } from "../components/StyledComponents";
 import { SlOptionsVertical } from "react-icons/sl";
+import rooms from '../json/rooms.json';
+import { useState } from "react";
+import Table from "../components/Table";
+
 const Rooms = () => {
+  const tabOptions = ['All Rooms', 'Available', 'Booked'];
+  const [filter, setFilter] = useState(0);
+  const [roomsData, setRoomsData] = useState(rooms);
+  
+  useEffect(() => {
+    let data = rooms.filter(room =>{
+      if(filter == 1){
+        return room.status === 'Available'
+      }else if(filter == 2){
+        return room.status === 'Booked'
+      }
+      else{
+        return room;
+      }  
+    })
+    .map(room => room);
+    setRoomsData(data);
+  }, [filter]);
+
+  const filterHandler = (e) => {
+    let activeFilter = document.querySelector(".activeFilter");
+    activeFilter.classList.remove("activeFilter");
+    e.target.classList.add('activeFilter');
+    setFilter(e.target.value);
+  }
   return (
     <main>
       <div className="tabMenu-container">
         <TabMenu>
-          <span>All Guests</span>
-          <span>Pending</span>
-          <span>Booked</span>
-          <span>Canceled</span>
-          <span>Refund</span>
+          {tabOptions.map((item, index) => <Button className={index==0 ? 'activeFilter': ''} value={index} onClick={filterHandler}>{item}</Button>)}
         </TabMenu>
         <OrderBySelect>
           <option value="guest">Guest</option>
@@ -26,184 +50,7 @@ const Rooms = () => {
           <option value="check_out">Check Out</option>
         </OrderBySelect>
       </div>
-      <Table className="target-component table">
-        <tr>
-          <th>Photo</th>
-          <th>Room Nº</th>
-          <th>Room Id</th>
-          <th>Room Type</th>
-          <th>Amenities</th>
-          <th>Price</th>
-          <th>Offer price</th>
-          <th>Status</th>
-          <th></th>
-        </tr>
-        <tr>
-            <td>
-                <UserImage w_150/>
-            </td>
-          <td>
-            <span className="fw-500 table__roomNumber">#000123456</span>              
-          </td>
-          <td>
-            <span className="fw-500">Deluxe A-91234</span>
-          </td>
-          <td>
-            <span className="fw-500">Double Bed</span>
-          </td>
-          <td>
-            <span className="fw-500">Floor A-1</span>
-          </td>
-          <td>
-            <span>
-              AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi
-            </span>
-          </td>
-          <td>
-            <span>
-              <span className="fw-600 table__inline">$145</span> <span className="table__inline fs-14 c-green">/night</span>
-            </span>
-          </td>
-          <td>
-            <Button available>Available</Button>
-          </td>
-          <td>
-            <SlOptionsVertical />
-          </td>
-        </tr>
-        <tr>
-            <td>
-                <UserImage w_150/>
-            </td>
-          <td>
-            <span className="fw-500 table__roomNumber">#000123456</span>              
-          </td>
-          <td>
-            <span className="fw-500">Deluxe A-91234</span>
-          </td>
-          <td>
-            <span className="fw-500">Double Bed</span>
-          </td>
-          <td>
-            <span className="fw-500">Floor A-1</span>
-          </td>
-          <td>
-            <span>
-              AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi
-            </span>
-          </td>
-          <td>
-            <span>
-              <span className="fw-600 table__inline">$145</span> <span className="table__inline fs-14 c-green">/night</span>
-            </span>
-          </td>
-          <td>
-            <Button available>Available</Button>
-          </td>
-          <td>
-            <SlOptionsVertical />
-          </td>
-        </tr>
-        <tr>
-            <td>
-                <UserImage w_150/>
-            </td>
-          <td>
-            <span className="fw-500 table__roomNumber">#000123456</span>              
-          </td>
-          <td>
-            <span className="fw-500">Deluxe A-91234</span>
-          </td>
-          <td>
-            <span className="fw-500">Double Bed</span>
-          </td>
-          <td>
-            <span className="fw-500">Floor A-1</span>
-          </td>
-          <td>
-            <span>
-              AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi
-            </span>
-          </td>
-          <td>
-            <span>
-              <span className="fw-600 table__inline">$145</span> <span className="table__inline fs-14 c-green">/night</span>
-            </span>
-          </td>
-          <td>
-            <Button available>Available</Button>
-          </td>
-          <td>
-            <SlOptionsVertical />
-          </td>
-        </tr>
-        <tr>
-            <td>
-                <UserImage w_150/>
-            </td>
-          <td>
-            <span className="fw-500 table__roomNumber">#000123456</span>              
-          </td>
-          <td>
-            <span className="fw-500">Deluxe A-91234</span>
-          </td>
-          <td>
-            <span className="fw-500">Double Bed</span>
-          </td>
-          <td>
-            <span className="fw-500">Floor A-1</span>
-          </td>
-          <td>
-            <span>
-              AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi
-            </span>
-          </td>
-          <td>
-            <span>
-              <span className="fw-600 table__inline">$145</span> <span className="table__inline fs-14 c-green">/night</span>
-            </span>
-          </td>
-          <td>
-            <Button available>Available</Button>
-          </td>
-          <td>
-            <SlOptionsVertical />
-          </td>
-        </tr>
-        <tr>
-            <td>
-                <UserImage w_150/>
-            </td>
-          <td>
-            <span className="fw-500 table__roomNumber">#000123456</span>              
-          </td>
-          <td>
-            <span className="fw-500">Deluxe A-91234</span>
-          </td>
-          <td>
-            <span className="fw-500">Double Bed</span>
-          </td>
-          <td>
-            <span className="fw-500">Floor A-1</span>
-          </td>
-          <td>
-            <span>
-              AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi
-            </span>
-          </td>
-          <td>
-            <span>
-              <span className="fw-600 table__inline">$145</span> <span className="table__inline fs-14 c-green">/night</span>
-            </span>
-          </td>
-          <td>
-            <Button booked red>Booked</Button>
-          </td>
-          <td>
-            <SlOptionsVertical />
-          </td>
-        </tr>
-      </Table>
+      <Table headData={['Photo', 'Room Nº','Room Id', 'Room Type', 'Facilities', 'Rate', 'Offer price', 'Status']} tableData = {roomsData} tableType="rooms" />
     </main>
   );
 };

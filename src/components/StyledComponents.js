@@ -57,9 +57,7 @@ export const Table = styled.table`
     }
     span{
         display:block;
-    }
-    
-    
+    } 
 `;
 
 export const Button = styled.button`
@@ -195,20 +193,20 @@ export const Input = styled.input`
 `;
 export const TabMenu = styled.div`
     display:flex;
-    span{
+    button{
         border-bottom: 1px solid #D4D4D4;
-        padding:26px clamp(20px, 1.4vw, 40px);
         font-weight:500;
         color:#6E6E6E;
-        :first-child{
-            color:#135846;
-            border-bottom: 2px solid #135846;
-        }
-        :active, :hover{
+        background:transparent;
+        width:auto;
+        border-radius:0px;
+        &.activeFilter{
             color:#135846;
             border-bottom: 2px solid #135846;
         }
         :hover{
+            color:#135846;
+            border-bottom: 2px solid #135846;
             cursor:pointer;
         }
     }
@@ -234,6 +232,9 @@ export const Sidebar = styled.aside`
     box-shadow: 13px 3px 40px #00000005;
     position:absolute;
     top:0;
+    &.close{
+      display:none;
+    }
     a{
         font-weight:600;
         font-size:18px;
@@ -259,6 +260,7 @@ export const Sidebar = styled.aside`
             color:#E23428;
         }
     }
+
 `;
 
 export const UserCard = styled.div`
