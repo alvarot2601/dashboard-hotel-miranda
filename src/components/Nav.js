@@ -6,13 +6,11 @@ import {AiOutlineHeart, AiOutlineMessage, AiOutlineBell, AiOutlineArrowDown} fro
 import {BsSearch} from 'react-icons/bs';
 import {MdCompareArrows} from 'react-icons/md'; 
 import {SiGooglemessages} from 'react-icons/si';
-import { Navigate, redirect } from "react-router";
 import { useNavigate } from "react-router";
 
 
-
 const Nav = () => {
-
+    const navigate = useNavigate();
     const closeAside = () => {
         const nav = document.querySelector("nav");
         const aside = document.querySelector("aside");
@@ -31,8 +29,7 @@ const Nav = () => {
     }
     const logOutHandler = () => {
         localStorage.clear();
-        redirect("/login");
-        console.log('2222222')
+        navigate('/login');
     }
     return (
         <NavBar>
@@ -40,10 +37,7 @@ const Nav = () => {
                 <MdCompareArrows onClick={closeAside}/> <span>Dashboard</span>
            </div>
            <IconContainer>
-               <span>
-                    <AiOutlineMessage/>
-                    <sup className="sup">2</sup>
-               </span>
+               <AiOutlineMessage/>
                 <AiOutlineBell />
                 <BiLogOut onClick={logOutHandler} />
            </IconContainer>
