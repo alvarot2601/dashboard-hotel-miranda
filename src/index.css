@@ -91,6 +91,10 @@ main.full {
 .roomSlide .swiper-button-next {
   right: 10%;
 }
+.reviewsSlide {
+  max-width: 73vw;
+}
+
 table {
   width: 100%;
   margin-top: 35px;
@@ -145,6 +149,28 @@ table td:nth-of-type(8), table td:nth-of-type(9) {
 }
 table span {
   display: block;
+}
+
+.table-users th:nth-of-type(1) {
+  width: 7%;
+}
+.table-users th:nth-of-type(2) {
+  width: 10%;
+}
+.table-users th:nth-of-type(3) {
+  width: 11%;
+}
+.table-users th:nth-of-type(4) {
+  width: 10%;
+}
+.table-users th:nth-of-type(5) {
+  width: 14%;
+}
+.table-users th:nth-of-type(6) {
+  width: 30%;
+}
+.table-users th:nth-of-type(7) {
+  width: 18%;
 }
 
 .modal {

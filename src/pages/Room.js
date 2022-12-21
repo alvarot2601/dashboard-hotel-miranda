@@ -3,9 +3,9 @@ import { useParams } from "react-router";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiFillMessage } from "react-icons/ai";
 import styled, { css } from "styled-components";
-import { UserImage, Button } from "../components/StyledComponents";
+import { Button } from "../components/styled components/Button";
 import RoomSlide from "../components/RoomSlide";
-
+import { UserImage } from "../components/styled components/UserImage";
 const Room = () => {
   const { roomId } = useParams();
   return (

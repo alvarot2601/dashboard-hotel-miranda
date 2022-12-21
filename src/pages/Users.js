@@ -1,16 +1,13 @@
 import React from "react";
-import styled, { css } from "styled-components";
 import { useState, useEffect } from "react";
-import { SlOptionsVertical } from "react-icons/sl";
 import users from "../json/users.json";
-import { Button } from "../components/StyledComponents";
+import { Button } from "../components/styled components/Button";
 import Table from "../components/Table";
-import {
-  TabMenu,
-  OrderBySelect,
-  Input,
-  UserImage,
-} from "../components/StyledComponents";
+import { OrderBySelect } from "../components/styled components/OrderBySelect";
+
+import { TabMenu } from "../components/styled components/TabMenu";
+
+import { Input } from "../components/styled components/Input";
 const Bookings = () => {
   const tabOptions = ["All Employee", "Active Employee", "Inactive Employee"];
   const [filter, setFilter] = useState(0);

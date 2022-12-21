@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {MdGppBad, MdOutlineGppGood} from 'react-icons/md';
-import {AiOutlineArrowRight} from 'react-icons/ai';
-import { useState } from "react";
-import { CustomerReviews, UserImage, TabMenu, Table, Button } from "../components/StyledComponents";
+import {AiOutlineArrowRight} from 'react-icons/ai'; 
+import { UserImage } from "../components/styled components/UserImage";
+import {Table } from "../components/StyledComponents";
+import { CustomerReviews } from "../components/styled components/CustomerReviews";
+import { Button } from "../components/styled components/Button";
+import { TabMenu } from "../components/styled components/TabMenu";
+
 const Contact = () => {
     const tabOptions = ["All Contacts", "Archived"];
     const [filter, setFilter] = useState(0);

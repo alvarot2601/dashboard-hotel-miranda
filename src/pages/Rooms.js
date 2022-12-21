@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
-import styled, { css } from "styled-components";
-import {
-  TabMenu,
-  Button,
-  OrderBySelect,
-} from "../components/StyledComponents";
-import { UserImage } from "../components/StyledComponents";
-import { SlOptionsVertical } from "react-icons/sl";
+import { OrderBySelect } from "../components/styled components/OrderBySelect";
+import { TabMenu } from "../components/styled components/TabMenu";
 import rooms from '../json/rooms.json';
 import { useState } from "react";
 import Table from "../components/Table";
-
+import { Button } from "../components/styled components/Button";
 const Rooms = () => {
   const tabOptions = ['All Rooms', 'Available', 'Booked'];
   const [filter, setFilter] = useState(0);
@@ -65,6 +59,7 @@ const Rooms = () => {
         </OrderBySelect>
       </div>
       <Table headData={['Photo', 'Room Nº','Room Id', 'Room Type', 'Facilities', 'Rate', 'Offer price', 'Status']} tableData = {roomsData} tableType="rooms" />
+      
     </main>
   );
 };

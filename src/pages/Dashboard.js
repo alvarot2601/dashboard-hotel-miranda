@@ -1,11 +1,15 @@
 import React from "react";
-import styled, { css } from "styled-components";
 import { BiBed } from "react-icons/bi";
 import {MdGppBad, MdOutlineGppGood} from 'react-icons/md';
 import {AiOutlineArrowRight} from 'react-icons/ai';
-import {DashboardMain, RecentBookingSchedule, UserImage, KpiContainer, Calendar, RecentBooking, ReservationStats, TotalStats, StatContainer, CustomerReviews } from "../components/StyledComponents";
+import { Calendar, ReservationStats, CustomerReviews } from "../components/StyledComponents";
+import { DashboardMain } from "../components/styled components/DashboardMain";
 import { Link } from "react-router-dom";
-
+import { TotalStats } from "../components/styled components/TotalStats";
+import { StatContainer } from "../components/styled components/StatContainer"; 
+import { RecentBooking, RecentBookingSchedule } from "../components/styled components/RecentBookingSchedule";
+import { KpiContainer } from "../components/styled components/KpiContainer";
+import CustomerReview from "../components/CustomerReview";
 const Dashboard = () => {
   return (
     <DashboardMain>
@@ -158,74 +162,7 @@ const Dashboard = () => {
           </p>
         </div>
       </TotalStats>
-      <CustomerReviews className="customerReviews target-component target-component--2">
-        <p className="customerReviews__title">Latest Review by Customers</p>
-        <div className="customerReviews__cardContainer">
-            <div className="customerReviews__card">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam
-                </p>
-                <div className="customerReviews__row">
-                    <div className="customerReviews__user">
-                        <UserImage w_57></UserImage>
-                        <div className="customerReviews__name">
-                            <span>Kusnaidi Anderson</span>
-                            <span>4m ago</span>
-                        </div>
-                    </div>
-                    <div className="customerReviews__icons">
-                        <MdOutlineGppGood/>
-                        <MdGppBad />
-                    </div>
-                </div>
-            </div>
-            <div className="customerReviews__card">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam
-                </p>
-                <div className="customerReviews__row">
-                    <div className="customerReviews__user">
-                        <UserImage small></UserImage>
-                        <div className="customerReviews__name">
-                            <span>Kusnaidi Anderson</span>
-                            <span>4m ago</span>
-                        </div>
-                    </div>
-                    <div className="customerReviews__icons">
-                        <MdOutlineGppGood/>
-                        <MdGppBad />
-                    </div>
-                </div>
-            </div>
-            <div className="customerReviews__card">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam
-                </p>
-                <div className="customerReviews__row">
-                    <div className="customerReviews__user">
-                        <UserImage small></UserImage>
-                        <div className="customerReviews__name">
-                            <span>Kusnaidi Anderson</span>
-                            <span>4m ago</span>
-                        </div>
-                    </div>
-                    <div className="customerReviews__icons">
-                        <MdOutlineGppGood/>
-                        <MdGppBad />
-                    </div>
-                </div>
-            </div>
-            <div>
-                <AiOutlineArrowRight className="arrow-icon"/>
-            </div>
-        </div>
-      </CustomerReviews>
+      <CustomerReview></CustomerReview>
     </DashboardMain>
   );
 };

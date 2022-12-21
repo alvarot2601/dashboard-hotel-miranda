@@ -1,12 +1,14 @@
 import React from "react";
-import styled, { css } from 'styled-components'
 import { Link } from "react-router-dom";
 import {MdOutlineDashboard} from 'react-icons/md';
 import {BsFillKeyFill, BsCalendarCheck} from 'react-icons/bs';
 import {FaUser} from 'react-icons/fa';
 import {BiConversation} from 'react-icons/bi';
-import {Sidebar, UserCard, UserImage, UserMail, UserName, ButtonGreen, Footer, FooterText, CopyrightText} from "../components/StyledComponents";
+import { Button } from "./styled components/Button";
 
+import { Sidebar, UserCard } from "./styled components/Sidebar";
+import { UserImage } from "./styled components/UserImage";
+import { Footer } from "./styled components/Footer";
 const Aside = () => {
     return (
         <Sidebar>
@@ -34,15 +36,15 @@ const Aside = () => {
             
             
             
-            <UserCard>
+            <UserCard className="userCard">
                 <UserImage w_70></UserImage>
-                <UserName>William Johanson</UserName>
-                <UserMail>williamjohn@gmail.com</UserMail>
-                <ButtonGreen>Contact Us</ButtonGreen>
+                <span className="userCard__name">William Johanson</span>
+                <span className="userCard__mail">williamjohn@gmail.com</span>
+                <Button contact_us>Contact Us</Button>
             </UserCard>
-            <Footer>
-                <FooterText>Travl Hotel Admin Dashboard</FooterText>
-                <CopyrightText>2020 All Rights Reserved</CopyrightText>
+            <Footer className="footer">
+                <p>Travl Hotel Admin Dashboard</p>
+                <p className="footer__copyright">2020 All Rights Reserved</p>
             </Footer>
         </Sidebar>  
     );

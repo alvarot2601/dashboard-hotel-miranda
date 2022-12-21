@@ -2,13 +2,21 @@ import React from "react";
 import styled, { css } from 'styled-components'
 import { useState } from "react";
 import {useNavigate } from "react-router";
-const LoginForm = styled.div`
+const LoginForm = styled.form`
     width:100%;
     max-width:700px;
+    
     margin:auto;
+    margin-top:20vh;
     input{
         width:100%;
         padding:10px;
+        margin-bottom:20px;
+    }
+    input[type=submit]{
+        width:50%;
+        margin:auto;
+        display:block;
     }
 `;
 const Login = () => {

@@ -4,13 +4,11 @@ import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import bookings from '../json/bookings.json';
 import { useEffect } from "react";
-import {
-  TabMenu,
-  Button,
-  OrderBySelect,
-  UserImage,
-} from "../components/StyledComponents";
+import { Button } from "../components/styled components/Button";
+import { OrderBySelect } from "../components/styled components/OrderBySelect";
+import { TabMenu } from "../components/styled components/TabMenu";
 import Table from "../components/Table";
+
 const Bookings = () => {
   const tabOptions = ["All Bookings", "Check In", "Check Out", "In Progress"];
   const [filter, setFilter] = useState(0);
