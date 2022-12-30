@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { UserImage } from "./Aside";
 import {BiLogOut} from 'react-icons/bi';
 import {AiOutlineHeart, AiOutlineMessage, AiOutlineBell, AiOutlineArrowDown} from 'react-icons/ai';
@@ -7,9 +7,14 @@ import {MdCompareArrows} from 'react-icons/md';
 import {SiGooglemessages} from 'react-icons/si';
 import { useNavigate } from "react-router";
 import { NavBar, IconContainer } from "./styled components/Navbar";
-
+import { useLocation } from "react-router";
 const Nav = () => {
+    const location = useLocation();
     const navigate = useNavigate();
+    const [actualLocation, setActualLocation] = useState()
+    useEffect(()=>{
+        setActualLocation(location.pathname.substring(1))
+    }, [location]);
     const closeAside = () => {
         const nav = document.querySelector("nav");
         const aside = document.querySelector("aside");
@@ -33,7 +38,8 @@ const Nav = () => {
     return (
         <NavBar>
            <div>
-                <MdCompareArrows onClick={closeAside}/> <span>Dashboard</span>
+                <MdCompareArrows onClick={closeAside}/>
+                <span>{actualLocation}</span>
            </div>
            <IconContainer>
                <div className="icon-container">

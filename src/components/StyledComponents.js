@@ -76,13 +76,11 @@ export const Table = styled.table`
 
 
 
-export const Calendar = styled.div`
-  height: 400px;
-`;
+
 
 
 
 export const ReservationStats = styled.div`
-  height: 400px;
+  height: 26vw;
   grid-column: 3/5;
 `;

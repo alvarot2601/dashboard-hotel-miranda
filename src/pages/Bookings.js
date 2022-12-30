@@ -8,36 +8,42 @@ import { Button } from "../components/styled components/Button";
 import { OrderBySelect } from "../components/styled components/OrderBySelect";
 import { TabMenu } from "../components/styled components/TabMenu";
 import Table from "../components/Table";
-
 const Bookings = () => {
-  const tabOptions = ["All Bookings", "Check In", "Check Out", "In Progress"];
+  const tabOptions = ["All Bookings", "Pending", "Booked", "Canceled", "Refund"];
   const [filter, setFilter] = useState(0);
   const [bookingsData, setBookingsData] = useState(bookings)
-  const [checkInDate, setCheckInDate] = useState('');
-  const [checkOutDate, setCheckOutDate] = useState('');
+  const [orderBy, setOrderBy] = useState(1);
+  console.log(bookings[4].Guest[1])
   useEffect(() => {
-    let data = bookings.filter(room =>{
-        
+    let data = bookings
+    .sort((a,b)=>{
+      if(orderBy==1){
+        if (a.Guest[1].toLowerCase() <  b.Guest[1].toLowerCase()) return -1;
+          else if (a.Guest[1].toLowerCase() > b.Guest[1].toLowerCase()) return 1;
+          return 0;
+      }
+      else if(orderBy==2) return new Date(parseInt(a.Order_date)) - new Date(parseInt(b.Order_date));
+      else if(orderBy==3) return new Date(parseInt(a['Check In'])) - new Date(parseInt(b['Check In']));
+      else if(orderBy==4) return new Date(parseInt(a['Check Out'])) - new Date(parseInt(b['Check Out']));
+    })
+    .filter(booking =>{    
       if(filter == 1){
-        const check_in = new Date(checkInDate);
-        const check_out = new Date(checkOutDate);
-        return room['Check In'] >=check_in.getTime()  && room['Check In'] <= check_out.getTime();
+       return booking.status == 'Pending'
       }else if(filter == 2){
-        const check_in = new Date(checkInDate);
-        const check_out = new Date(checkOutDate);
-        return room['Check Out'] >=check_in.getTime()  && room['Check Out'] <= check_out.getTime();
+        return booking.status == 'Booked'
       }else if(filter == 3){
-        const check_in = new Date(checkInDate);
-        const check_out = new Date(checkOutDate);
-        return (room['Check In'] >=check_in.getTime() && room['Check In'] < check_out.geTime())  && (room['Check Out'] <= check_out.getTime());
+        return booking.status == 'Canceled'
+      }
+      else if(filter == 4){
+        return booking.status == 'Refund'
       }
       else{
-        return room;
+        return booking;
       }  
     })
-    .map(room => room);
+    .map(booking => booking);
     setBookingsData(data);
-  }, [filter]);
+  }, [filter, orderBy]);
 
 
   
@@ -48,56 +54,11 @@ const Bookings = () => {
     e.target.classList.add("activeFilter");
     setFilter(e.target.value);
   };
-  const changeInputTypeHandler = (e) => {
-    let checkIn = true;
-    let check_date;
-    if(e.target.id == 'check_in'){
-        check_date = document.querySelector("#check_in");
-    }
-    else{
-        check_date = document.querySelector("#check_out");
-        checkIn = false;
-    }
-    if(check_date.type == 'text'){
-        check_date.type = 'date';
-        if(checkIn === true){
-            check_date.value = checkInDate;
-        }
-        else{
-            check_date.value = checkOutDate;
-        }
-        check_date.readOnly = false;
-    }
-    else{
-        if(check_date.value!==''){
-            check_date.type = 'text';
-            check_date.readOnly = true;
-            const date = checkIn ? new Date(checkInDate) : new Date(checkOutDate)
-            
-            check_date.value = date.getDate() + " " +  date.toLocaleDateString('en-US',{
-                month:'long'
-            }) + " " + date.getFullYear();
-        }  
-    }
-  }
-  const changeDateHandler = (e) => {
-    
-    if(e.target.id === 'check_in')
-    {
-        const check_in = document.querySelector("#check_in");
-        const check_in_date = new Date(check_in.value);
-        if(check_in.type==='date'){
-            setCheckInDate(check_in.value)
-        }
-    }
-    else{
-        const check_out = document.querySelector("#check_out");
-        const check_out_date = new Date(check_out.value);
-        if(check_out.type==='date'){
-            setCheckOutDate(check_out.value)
-        }
-    }
-    
+  const orderByHandler = (e)=>{
+    if(e.target.value==1) setOrderBy(1);
+    else if(e.target.value==2) setOrderBy(2);
+    else if(e.target.value==3) setOrderBy(3);
+    else if(e.target.value==4) setOrderBy(4);
   }
   
   return (
@@ -115,13 +76,12 @@ const Bookings = () => {
           ))}
         </TabMenu>
         <div>
-            <input type="date" id="check_in" placeholder="dd-mm-yyyy" onFocus={changeInputTypeHandler} onChange={changeDateHandler}/>
-            <input type="date" id="check_out" placeholder="dd-mm-yyyy" onFocus={changeInputTypeHandler} onChange={changeDateHandler}/>
-            <OrderBySelect>
-            <option value="guest">Guest</option>
-            <option value="order_date">Order Date</option>
-            <option value="check_in">Check In</option>
-            <option value="check_out">Check Out</option>
+            
+            <OrderBySelect onChange={orderByHandler}>
+              <option value="1">Guest</option>
+              <option value="2">Order Date</option>
+              <option value="3">Check In</option>
+              <option value="4">Check Out</option>
             </OrderBySelect>
         </div>
       </div>
@@ -273,4 +233,58 @@ export default Bookings;
             <SlOptionsVertical />
           </td>
         </tr>
-      </Table> */
+      </Table> 
+      
+      
+      
+      const changeInputTypeHandler = (e) => {
+    let checkIn = true;
+    let check_date;
+    if(e.target.id == 'check_in'){
+        check_date = document.querySelector("#check_in");
+    }
+    else{
+        check_date = document.querySelector("#check_out");
+        checkIn = false;
+    }
+    if(check_date.type == 'text'){
+        check_date.type = 'date';
+        if(checkIn === true){
+            check_date.value = checkInDate;
+        }
+        else{
+            check_date.value = checkOutDate;
+        }
+        check_date.readOnly = false;
+    }
+    else{
+        if(check_date.value!==''){
+            check_date.type = 'text';
+            check_date.readOnly = true;
+            const date = checkIn ? new Date(checkInDate) : new Date(checkOutDate)
+            
+            check_date.value = date.getDate() + " " +  date.toLocaleDateString('en-US',{
+                month:'long'
+            }) + " " + date.getFullYear();
+        }  
+    }
+  }
+  const changeDateHandler = (e) => {
+    
+    if(e.target.id === 'check_in')
+    {
+        const check_in = document.querySelector("#check_in");
+        const check_in_date = new Date(check_in.value);
+        if(check_in.type==='date'){
+            setCheckInDate(check_in.value)
+        }
+    }
+    else{
+        const check_out = document.querySelector("#check_out");
+        const check_out_date = new Date(check_out.value);
+        if(check_out.type==='date'){
+            setCheckOutDate(check_out.value)
+        }
+    }
+    
+  }*/

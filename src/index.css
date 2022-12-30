@@ -196,4 +196,12 @@ table span {
   width: 50%;
 }
 
+.fc-theme-standard .fc-scrollgrid {
+  border: none;
+}
+
+.fc-header-toolbar {
+  margin-bottom: 0 !important;
+}
+
 /*# sourceMappingURL=index.css.map */

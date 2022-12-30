@@ -4,6 +4,7 @@ export const RecentBookingSchedule = styled.div`
   grid-row:2/5;
   grid-column: 1/3;
   text-align:center;
+  
   a{
     color:#135846;
     font-weight:500;
@@ -16,6 +17,8 @@ export const RecentBooking = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 14px 30px 14px 30px;
+  
+  
   .recent-booking {
     display: flex;
     gap: 21px;

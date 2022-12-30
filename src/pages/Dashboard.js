@@ -2,7 +2,7 @@ import React from "react";
 import { BiBed } from "react-icons/bi";
 import {MdGppBad, MdOutlineGppGood} from 'react-icons/md';
 import {AiOutlineArrowRight} from 'react-icons/ai';
-import { Calendar, ReservationStats, CustomerReviews } from "../components/StyledComponents";
+import {ReservationStats, CustomerReviews } from "../components/StyledComponents";
 import { DashboardMain } from "../components/styled components/DashboardMain";
 import { Link } from "react-router-dom";
 import { TotalStats } from "../components/styled components/TotalStats";
@@ -10,7 +10,11 @@ import { StatContainer } from "../components/styled components/StatContainer";
 import { RecentBooking, RecentBookingSchedule } from "../components/styled components/RecentBookingSchedule";
 import { KpiContainer } from "../components/styled components/KpiContainer";
 import CustomerReview from "../components/CustomerReview";
+import Calendar from "../components/Calendar";
+import D3 from "../components/D3";
+
 const Dashboard = () => {
+  
   return (
     <DashboardMain>
       <KpiContainer className="kpi-container target-component">
@@ -50,8 +54,11 @@ const Dashboard = () => {
         </div>
       </KpiContainer>
       <RecentBookingSchedule className="target-component">
-        <Calendar></Calendar>
-        <hr></hr>
+        <Calendar>
+          
+        </Calendar>
+        
+        <div className="recent-booking-container">
         <RecentBooking>
           <div className="recent-booking recent-booking--first">
             <img
@@ -118,9 +125,12 @@ const Dashboard = () => {
           </div>
           <span className="days">3</span>
         </RecentBooking>
+        </div>
         <Link>View More</Link>
       </RecentBookingSchedule>
-      <ReservationStats className="target-component"></ReservationStats>
+      <ReservationStats className="target-component">
+        <D3/>
+      </ReservationStats>
       <StatContainer first className="target-component target-component--2 target-component--green">
         <div>
           <span>Available Room Today</span>

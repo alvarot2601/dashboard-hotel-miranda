@@ -261,11 +261,13 @@ const Table = (props) => {
                           } else if (tableType == "bookings") {
                             return (
                               <td>
-                                {room[key] == "Refund" ? (
-                                  <Button refund>Refund</Button>
-                                ) : (
-                                  <Button booked>Booked</Button>
-                                )}
+                                {
+                                  room[key] == 'Refund' ? <Button refund>{room[key]}</Button>
+                                  : room[key] == 'Booked' ? <Button booked>{room[key]}</Button>
+                                  : room[key] == 'Pending' ? <Button pending>{room[key]}</Button>
+                                  : <Button canceled>{room[key]}</Button>
+                                  
+                                }
                               </td>
                             );
                           }
